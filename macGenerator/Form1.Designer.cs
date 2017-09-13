@@ -45,7 +45,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(203, 21);
             this.textBox1.TabIndex = 0;
-            this.textBox1.Text = "00FF0A0C0603\r\n";
+            this.textBox1.Text = "\r\n";
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // textBox2
