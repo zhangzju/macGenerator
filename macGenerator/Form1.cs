@@ -5,7 +5,6 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -27,11 +26,16 @@ namespace macGenerator
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            string pattern = @"^[0-9A-F]{12}$";
-            Regex rgx = new Regex(pattern, RegexOptions.IgnoreCase);
-            if(!rgx.IsMatch(this.textBox1.Text) && this.textBox1.TextLength == 12)
+            //string pattern = @"^[0-9A-F]{12}$";
+            //Regex rgx = new Regex(pattern, RegexOptions.IgnoreCase);
+            //if(!rgx.IsMatch(this.textBox1.Text) && this.textBox1.TextLength >= 14)
+            //{
+            //    MessageBox.Show("请输入正确的MAC地址，不要加‘-’或者‘_’,不要超过12位！");
+            //    this.textBox1.Text = "";
+            //}
+            if(this.textBox1.TextLength >= 13)
             {
-                MessageBox.Show("请输入正确的MAC地址，不要加‘-’或者‘_’！");
+                MessageBox.Show("请输入正确的MAC地址，不要加‘-’或者‘_’,不要超过12位！");
                 this.textBox1.Text = "";
             }
         }
@@ -54,15 +58,15 @@ namespace macGenerator
             long rightAddress;
 
             long macAddress = Converter.Str2Long(startMac);
-            MessageBox.Show(macAddress.ToString() + Converter.Long2Str(macAddress));
+            //MessageBox.Show(number.ToString());
 
             FileStream filestream = File.OpenWrite(filePath);
             StreamWriter writer = new StreamWriter(filestream);
 
             for (int i = 0; i< number; i++)
             {
-                rightAddress = leftAddress + 29;
-                writer.WriteLine(Converter.Long2Str(leftAddress) + "..." + Converter.Long2Str(rightAddress));
+                rightAddress = leftAddress + 28;
+                writer.WriteLine(Converter.Long2Str(leftAddress) + ",,," + Converter.Long2Str(rightAddress));
                 leftAddress = rightAddress + 1;
             }
 
